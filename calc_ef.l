@@ -1,5 +1,5 @@
 %{
-#include "calc-ef.tab.h"
+#include "calc-ef.tab.h"  // Asegúrate de que sea el nombre correcto del archivo generado por Bison
 #include <stdlib.h>
 %}
 
@@ -12,7 +12,8 @@
 "/"                 { return DIVIDE; }
 "("                 { return LP; }
 ")"                 { return RP; }
-[ \t\n]+            { /* Ignorar espacios en blanco */ }
+"\n"                { return NEWLINE; }
+[ \t]+            { /* Ignorar espacios en blanco */ }
 .                   { printf("Carácter inesperado: %c\n", *yytext); return ERROR; }
 
 %%

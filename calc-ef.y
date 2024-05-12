@@ -1,20 +1,21 @@
 %{
 #include <stdio.h>
-#include <stdlib.h> // Para uso de atof, si necesario.
+#include <stdlib.h>
 void yyerror(const char *s);
 int yylex(void);
 %}
 
 %union {
-    double val;  // Esto almacenará los valores numéricos de las expresiones
+    double val;
 }
 
 %token <val> NUMBER
 %token PLUS MINUS TIMES DIVIDE
 %token LP RP
+%token NEWLINE  // Declarar el token NEWLINE
 %token ERROR
 
-%type <val> expression  // Declara que 'expression' usa la parte 'val' de la unión
+%type <val> expression
 
 %left PLUS MINUS
 %left TIMES DIVIDE
@@ -22,11 +23,12 @@ int yylex(void);
 %%
 
 calculation:
-    expression { printf("Resultado: %f\n", $1); }
-  ;
+    | calculation expression NEWLINE { printf("Resultado: %f\n", $2); }
+    | calculation expression ERROR NEWLINE { fprintf(stderr, "Expresión inválida.\n"); }
+    ;
 
 expression:
-    NUMBER { $$ = $1; }
+    NUMBER
   | expression PLUS expression { $$ = $1 + $3; }
   | expression MINUS expression { $$ = $1 - $3; }
   | expression TIMES expression { $$ = $1 * $3; }
@@ -42,12 +44,6 @@ void yyerror(const char *s) {
 
 int main(void) {
     printf("Ingrese una expresión:\n");
-    while (1) {
-        if (yyparse() == 0) {
-            printf("Nueva expresión:\n");
-        } else {
-            break;
-        }
-    }
+    yyparse();
     return 0;
 }

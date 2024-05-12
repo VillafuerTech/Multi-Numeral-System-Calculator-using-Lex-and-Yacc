@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 10
-#define YY_END_OF_BUFFER 11
+#define YY_NUM_RULES 11
+#define YY_END_OF_BUFFER 12
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,8 +362,8 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[19] =
     {   0,
-        0,    0,   11,    9,    8,    8,    6,    7,    4,    2,
-        3,    5,    1,    8,    0,    1,    1,    0
+        0,    0,   12,   10,    9,    8,    6,    7,    4,    2,
+        3,    5,    1,    9,    0,    1,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -400,34 +400,34 @@ static const YY_CHAR yy_ec[256] =
 
 static const YY_CHAR yy_meta[12] =
     {   0,
-        1,    2,    2,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1
     } ;
 
-static const flex_int16_t yy_base[20] =
+static const flex_int16_t yy_base[19] =
     {   0,
-        0,    0,   17,   18,    0,    0,   18,   18,   18,   18,
-       18,   18,    3,    0,    5,    0,    4,   18,   11
+        0,    0,   18,   19,   15,   19,   19,   19,   19,   19,
+       19,   19,    3,   14,    4,    0,    2,   19
     } ;
 
-static const flex_int16_t yy_def[20] =
+static const flex_int16_t yy_def[19] =
     {   0,
-       18,    1,   18,   18,   19,   19,   18,   18,   18,   18,
-       18,   18,   18,   19,   18,   13,   18,    0,   18
+       18,    1,   18,   18,   18,   18,   18,   18,   18,   18,
+       18,   18,   18,   18,   18,   13,   18,    0
     } ;
 
-static const flex_int16_t yy_nxt[30] =
+static const flex_int16_t yy_nxt[31] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,    4,   12,
-       13,   15,   14,   16,   17,   17,   18,    3,   18,   18,
-       18,   18,   18,   18,   18,   18,   18,   18,   18
+       13,   15,   17,   16,   17,   14,   14,   18,    3,   18,
+       18,   18,   18,   18,   18,   18,   18,   18,   18,   18
     } ;
 
-static const flex_int16_t yy_chk[30] =
+static const flex_int16_t yy_chk[31] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,   13,   19,   13,   17,   15,    3,   18,   18,   18,
-       18,   18,   18,   18,   18,   18,   18,   18,   18
+        1,   13,   17,   13,   15,   14,    5,    3,   18,   18,
+       18,   18,   18,   18,   18,   18,   18,   18,   18,   18
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -446,7 +446,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "calc_ef.l"
 #line 2 "calc_ef.l"
-#include "calc-ef.tab.h"
+#include "calc-ef.tab.h"  // Asegúrate de que sea el nombre correcto del archivo generado por Bison
 #include <stdlib.h>
 #line 452 "lex.yy.c"
 #line 453 "lex.yy.c"
@@ -702,7 +702,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 18 );
+		while ( yy_base[yy_current_state] != 19 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -765,19 +765,24 @@ case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
 #line 15 "calc_ef.l"
-{ /* Ignorar espacios en blanco */ }
+{ return NEWLINE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 16 "calc_ef.l"
-{ printf("Carácter inesperado: %c\n", *yytext); return ERROR; }
+{ /* Ignorar espacios en blanco */ }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 18 "calc_ef.l"
+#line 17 "calc_ef.l"
+{ printf("Carácter inesperado: %c\n", *yytext); return ERROR; }
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 19 "calc_ef.l"
 ECHO;
 	YY_BREAK
-#line 781 "lex.yy.c"
+#line 786 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1782,7 +1787,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 18 "calc_ef.l"
+#line 19 "calc_ef.l"
 
 
 int yywrap(void) {

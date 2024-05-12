@@ -61,7 +61,8 @@ extern int yydebug;
     DIVIDE = 262,                  /* DIVIDE  */
     LP = 263,                      /* LP  */
     RP = 264,                      /* RP  */
-    ERROR = 265                    /* ERROR  */
+    NEWLINE = 265,                 /* NEWLINE  */
+    ERROR = 266                    /* ERROR  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -72,9 +73,9 @@ union YYSTYPE
 {
 #line 8 "calc-ef.y"
 
-    double val;  // Esto almacenará los valores numéricos de las expresiones
+    double val;
 
-#line 78 "calc-ef.tab.h"
+#line 79 "calc-ef.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
