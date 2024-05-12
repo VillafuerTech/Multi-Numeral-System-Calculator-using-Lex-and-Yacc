@@ -1,18 +1,19 @@
 %{
-#include "y.tab.h"
+#include "calc-ef.tab.h"
+#include <stdlib.h>
 %}
 
 %%
 
-[0-9]+(\.[0-9]+)?   { yylval = atof(yytext); return NUMBER; }
+[0-9]+(\.[0-9]+)?   { yylval.val = atof(yytext); return NUMBER; }
 "+"                 { return PLUS; }
 "-"                 { return MINUS; }
 "*"                 { return TIMES; }
 "/"                 { return DIVIDE; }
 "("                 { return LP; }
 ")"                 { return RP; }
-[ \t\n]+            { /* ignore whitespace */ }
-.                   { printf("Unexpected character: %c\n", *yytext); }
+[ \t\n]+            { /* Ignorar espacios en blanco */ }
+.                   { printf("Carácter inesperado: %c\n", *yytext); return ERROR; }
 
 %%
 
