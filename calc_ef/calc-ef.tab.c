@@ -97,61 +97,7 @@ int yylex(void);
 #  endif
 # endif
 
-
-/* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
-#if YYDEBUG
-extern int yydebug;
-#endif
-
-/* Token kinds.  */
-#ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-  enum yytokentype
-  {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    NUMBER = 258,                  /* NUMBER  */
-    PLUS = 259,                    /* PLUS  */
-    MINUS = 260,                   /* MINUS  */
-    TIMES = 261,                   /* TIMES  */
-    DIVIDE = 262,                  /* DIVIDE  */
-    LP = 263,                      /* LP  */
-    RP = 264,                      /* RP  */
-    NEWLINE = 265,                 /* NEWLINE  */
-    ERROR = 266                    /* ERROR  */
-  };
-  typedef enum yytokentype yytoken_kind_t;
-#endif
-
-/* Value type.  */
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
-{
-#line 8 "calc-ef.y"
-
-    double val;
-
-#line 140 "calc-ef.tab.c"
-
-};
-typedef union YYSTYPE YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
-# define YYSTYPE_IS_DECLARED 1
-#endif
-
-
-extern YYSTYPE yylval;
-
-
-int yyparse (void);
-
-
-
+#include "calc-ef.tab.h"
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -1127,47 +1073,47 @@ yyreduce:
   case 3: /* calculation: calculation expression NEWLINE  */
 #line 26 "calc-ef.y"
                                      { printf("Resultado: %f\n", (yyvsp[-1].val)); }
-#line 1131 "calc-ef.tab.c"
+#line 1077 "calc-ef.tab.c"
     break;
 
   case 4: /* calculation: calculation expression ERROR NEWLINE  */
 #line 27 "calc-ef.y"
                                            { fprintf(stderr, "Expresión inválida.\n"); }
-#line 1137 "calc-ef.tab.c"
+#line 1083 "calc-ef.tab.c"
     break;
 
   case 6: /* expression: expression PLUS expression  */
 #line 32 "calc-ef.y"
                                { (yyval.val) = (yyvsp[-2].val) + (yyvsp[0].val); }
-#line 1143 "calc-ef.tab.c"
+#line 1089 "calc-ef.tab.c"
     break;
 
   case 7: /* expression: expression MINUS expression  */
 #line 33 "calc-ef.y"
                                 { (yyval.val) = (yyvsp[-2].val) - (yyvsp[0].val); }
-#line 1149 "calc-ef.tab.c"
+#line 1095 "calc-ef.tab.c"
     break;
 
   case 8: /* expression: expression TIMES expression  */
 #line 34 "calc-ef.y"
                                 { (yyval.val) = (yyvsp[-2].val) * (yyvsp[0].val); }
-#line 1155 "calc-ef.tab.c"
+#line 1101 "calc-ef.tab.c"
     break;
 
   case 9: /* expression: expression DIVIDE expression  */
 #line 35 "calc-ef.y"
                                  { (yyval.val) = (yyvsp[-2].val) / (yyvsp[0].val); }
-#line 1161 "calc-ef.tab.c"
+#line 1107 "calc-ef.tab.c"
     break;
 
   case 10: /* expression: LP expression RP  */
 #line 36 "calc-ef.y"
                      { (yyval.val) = (yyvsp[-1].val); }
-#line 1167 "calc-ef.tab.c"
+#line 1113 "calc-ef.tab.c"
     break;
 
 
-#line 1171 "calc-ef.tab.c"
+#line 1117 "calc-ef.tab.c"
 
       default: break;
     }
