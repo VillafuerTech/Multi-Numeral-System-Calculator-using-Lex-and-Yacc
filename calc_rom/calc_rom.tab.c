@@ -1322,7 +1322,8 @@ int main(void) {
 }
 
 char* to_roman(int value) {
-    static char buffer[1024];
+    static char buffer[1024]; // Buffer principal para el número romano
+    int original_value = value; // Guardar el valor original para comprobar si es negativo
     buffer[0] = '\0'; // Limpiar el buffer
 
     struct roman {
@@ -1332,8 +1333,12 @@ char* to_roman(int value) {
         {1000, "M"}, {900, "CM"}, {500, "D"}, {400, "CD"},
         {100, "C"}, {90, "XC"}, {50, "L"}, {40, "XL"},
         {10, "X"}, {9, "IX"}, {5, "V"}, {4, "IV"}, {1, "I"},
-        {0, NULL} // Terminal
+        {0, NULL} // Terminador
     };
+
+    if (value < 0) {
+        value = -value; // Convertir a positivo si es negativo
+    }
 
     for (struct roman* current = numerals; current->value > 0; ++current) {
         while (value >= current->value) {
@@ -1341,5 +1346,12 @@ char* to_roman(int value) {
             value -= current->value;
         }
     }
+
+    if (original_value < 0) {
+        static char negative_buffer[1025]; // Incrementar el tamaño para evitar truncamiento
+        snprintf(negative_buffer, sizeof(negative_buffer), "-%s", buffer);
+        strcpy(buffer, negative_buffer);
+    }
+
     return buffer;
 }
