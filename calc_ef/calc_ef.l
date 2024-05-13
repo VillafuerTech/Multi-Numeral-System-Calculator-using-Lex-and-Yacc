@@ -1,5 +1,5 @@
 %{
-#include "calc-ef.tab.h"  // Asegúrate de que sea el nombre correcto del archivo generado por Bison
+#include "calc-ef.tab.h"
 #include <stdlib.h>
 %}
 

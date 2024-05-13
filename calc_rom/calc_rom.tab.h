@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_CALC_EF_TAB_H_INCLUDED
-# define YY_YY_CALC_EF_TAB_H_INCLUDED
+#ifndef YY_YY_CALC_ROM_TAB_H_INCLUDED
+# define YY_YY_CALC_ROM_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -61,24 +61,15 @@ extern int yydebug;
     DIVIDE = 262,                  /* DIVIDE  */
     LP = 263,                      /* LP  */
     RP = 264,                      /* RP  */
-    NEWLINE = 265,                 /* NEWLINE  */
-    ERROR = 266                    /* ERROR  */
+    ERROR = 265,                   /* ERROR  */
+    NEWLINE = 266                  /* NEWLINE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
-{
-#line 8 "calc-ef.y"
-
-    double val;
-
-#line 79 "calc-ef.tab.h"
-
-};
-typedef union YYSTYPE YYSTYPE;
+typedef int YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -90,4 +81,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_CALC_EF_TAB_H_INCLUDED  */
+#endif /* !YY_YY_CALC_ROM_TAB_H_INCLUDED  */
