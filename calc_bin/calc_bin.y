@@ -46,20 +46,35 @@ int main(void) {
     yyparse();
     return 0;
 }
-
 char* to_binary(int num) {
-    static char bin_str[33];
-    int i = 0;
+    static char bin_str[34]; // Buffer para 33 caracteres + '\0'
+    int is_negative = (num < 0);
+    int index = 32;
+
+    bin_str[33] = '\0'; // Terminador nulo para la cadena
+
     if (num == 0) {
-        strcpy(bin_str, "0");
-        return bin_str;
+        return "0";
     }
-    for (i = 31; i >= 0; i--) {
-        bin_str[i] = (num & 1) + '0';
+
+    // Convertir el número a positivo si es negativo
+    if (is_negative) {
+        num = -num;
+    }
+
+    // Convertir el número a binario
+    while (num > 0 && index >= 0) {
+        bin_str[index--] = (num & 1) + '0';
         num >>= 1;
     }
-    // Ignorar ceros no significativos
-    char *p = bin_str;
-    while (*p == '0') p++;
-    return p;
+
+    char *start = bin_str + index + 1;  // Empezar la cadena después de los últimos bits llenados
+
+    if (is_negative) {
+        // Si es negativo, desplazar todo un lugar para el signo negativo
+        memmove(start + 1, start, strlen(start) + 1);
+        start[0] = '-';
+    }
+
+    return start;
 }
