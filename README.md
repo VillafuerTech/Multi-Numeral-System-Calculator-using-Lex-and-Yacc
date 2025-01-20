@@ -101,9 +101,6 @@ This project is a collection of calculators built using **Lex** and **Yacc** to 
    - Input: `3.14 * 2`
    - Output: `6.28`
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
